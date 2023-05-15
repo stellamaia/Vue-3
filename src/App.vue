@@ -4,12 +4,10 @@
       <BarraLateral />
     </div>
     <div class="column is-theree-quarter">
-      <Formulario />
+      <Formulario @aoSalvarTarefa="salvarTarefa" />
       <div class="lista">
-        <Tarefa />
-        <Tarefa />
-        <Tarefa />
-        <Tarefa />
+        <Tarefa v-for="(tarefa, index) in tarefas" :key="index" :tarefa="tarefa" />
+   
       </div>
     </div>
   </main>
@@ -27,13 +25,18 @@ export default defineComponent({
   components: {
     BarraLateral,
     Formulario,
-    Tarefa,
+    Tarefa, 
   },
   data(){
     return {
       tarefas: [] as ITarefa[],
     }
-  }
+  },
+  methods: {
+      salvarTarefa(tarefa: ITarefa) {
+        this.tarefas.push(tarefa);
+      }
+    }
 });
 </script>
 
